@@ -1,0 +1,4 @@
+# The project page lives on the orphan gh-pages branch, not here.
+# Guard against re-committing a built or checked-out copy into main.
+/docs/
+/assets/
