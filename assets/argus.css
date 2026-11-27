@@ -1,0 +1,649 @@
+/* Argus theme over the Pictura base stylesheet: red-figure pottery palette.
+   Terracotta = the paper's Argus orange (RGB 200,95,40); Aegean blue = its encoder blue (35,85,145);
+   black glaze for text; parchment ground. Dark mode = black-figure ware. */
+
+@font-face {
+  font-family: 'Cinzel'; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url(fonts/cinzel-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cinzel'; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url(fonts/cinzel-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --teal: #C85F28;          /* terracotta: Argus */
+  --teal-deep: #8E3F16;
+  --teal-fill: #F6E2D3;
+  --indigo: #235591;        /* Aegean blue: Argus-Raster */
+  --indigo-deep: #183C68;
+  --indigo-fill: #E1EAF4;
+  --link: #8E3F16;
+  --bg: #FBF6EC;            /* parchment */
+  --bg-alt: #F3E9D7;
+  --card: #FFFCF5;
+  --fg: #221A15;            /* black glaze */
+  --fg-soft: #6A5B4E;
+  --rule: #E6D8C1;
+  --glow-a: rgba(200,95,40,.14);
+  --glow-b: rgba(35,85,145,.10);
+  --shadow: 0 1px 2px rgba(60,30,10,.06), 0 10px 26px rgba(60,30,10,.08);
+  --shadow-lg: 0 2px 6px rgba(60,30,10,.08), 0 22px 48px rgba(60,30,10,.14);
+  --display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --key: #C85F28;
+}
+:root[data-theme="dark"] {
+  --teal: #E8844C;
+  --teal-deep: #F2B08A;
+  --teal-fill: #3A2014;
+  --indigo: #7AA6E0;
+  --indigo-deep: #A9C6EE;
+  --indigo-fill: #15233A;
+  --link: #F2B08A;
+  --bg: #15110E;            /* black-figure glaze */
+  --bg-alt: #1D1713;
+  --card: #221B16;
+  --fg: #F2E6D3;
+  --fg-soft: #BFAA92;
+  --rule: #3A2E24;
+  --glow-a: rgba(232,132,76,.14);
+  --glow-b: rgba(122,166,224,.10);
+  --key: #E8844C;
+}
+
+body { background: var(--bg); }
+
+/* Titles in an inscription face */
+h1.title, h2, h3.group, .abstract-card .eyebrow { font-family: var(--display); letter-spacing: 0.02em; }
+h1.title { font-weight: 600; }
+h1.title .name { color: var(--teal); font-weight: 800; letter-spacing: 0.06em; font-style: normal; }
+h2 { font-weight: 700; }
+.subtitle { font-family: var(--serif); font-style: italic; }
+
+/* Greek key (meander) band, drawn with an SVG tile in the accent color */
+.meander {
+  height: 18px; width: 100%; max-width: var(--max); margin: 6px auto 30px;
+  background-color: var(--key);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='18' viewBox='0 0 36 18'%3E%3Cpath d='M0 1.5H36M0 16.5H36M3 16.5V4.5H15V12.5H8V8.5H11M21 16.5V4.5H33V12.5H26V8.5H29' fill='none' stroke='black' stroke-width='2.4'/%3E%3C/svg%3E") repeat-x left center / 36px 18px;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='18' viewBox='0 0 36 18'%3E%3Cpath d='M0 1.5H36M0 16.5H36M3 16.5V4.5H15V12.5H8V8.5H11M21 16.5V4.5H33V12.5H26V8.5H29' fill='none' stroke='black' stroke-width='2.4'/%3E%3C/svg%3E") repeat-x left center / 36px 18px;
+  opacity: .9;
+}
+footer .meander { margin: 0 auto 18px; }
+
+/* Section marker: a short meander instead of the gradient bar */
+h2::before {
+  width: 72px; height: 12px; border-radius: 0;
+  background: var(--key);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12'%3E%3Cpath d='M0 11H24M2 11V2H10V8H5V5H7M14 11V2H22V8H17V5H19' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E") repeat-x left center / 24px 12px;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12'%3E%3Cpath d='M0 11H24M2 11V2H10V8H5V5H7M14 11V2H22V8H17V5H19' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E") repeat-x left center / 24px 12px;
+}
+
+/* Buttons and cards in clay tones */
+.btn { border-color: var(--rule); }
+.btn:hover { border-color: var(--teal); color: var(--teal-deep); }
+.clip { border: 1px solid var(--rule); }
+.clip .cap b { font-family: var(--display); letter-spacing: 0.02em; }
+.lede em { color: var(--teal-deep); }
+.drives.fail .clip { border-color: color-mix(in srgb, var(--teal) 45%, var(--rule)); }
+
+/* Hundred-eyes motif of Argus Panoptes above the title */
+svg.eyes { display: block; margin: 0 auto 10px; width: min(360px, 76vw); height: auto; }
+svg.eyes .lid { fill: var(--card); stroke: var(--teal); stroke-width: 1.6; }
+svg.eyes .iris { fill: var(--teal); }
+svg.eyes .pupil { fill: var(--fg); }
+svg.eyes .glint { fill: var(--card); }
+/* equal-contribution note: its own plain line under the affiliation pills, not a pill */
+.affil { margin-bottom: 8px; }
+.eqnote { margin: 0 auto 28px; max-width: none; text-align: center; font: 0.82rem/1.4 var(--sans); color: var(--fg-soft); }
+.eqnote sup { margin-right: 2px; }
+
+/* ---- Rig figure ---- */
+.rig { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 28px; margin: 0 0 22px; }
+.rig-svg { width: min(300px, 100%); height: auto; display: block; }
+.rig-svg .w { fill: var(--c); fill-opacity: .16; stroke: var(--c); stroke-opacity: .85; stroke-width: 1.3; }
+.rig-svg .car { fill: var(--fg); }
+.rig-svg .glass { fill: var(--fg-soft); }
+.rig-svg .cam { fill: var(--c); stroke: var(--card); stroke-width: 1.4; }
+.rig-svg .lab { fill: var(--c); font: 600 17px var(--sans); }
+.rig-svg .fov { font-weight: 400; }
+:root[data-theme="dark"] .rig-svg .w, :root[data-theme="dark"] .rig-svg .cam, :root[data-theme="dark"] .rig-svg .lab { filter: brightness(1.45); }
+:root[data-theme="dark"] .rig-svg .car { fill: #4a3d33; }
+.rig-side { max-width: 240px; }
+.frame-key {
+  display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 3.2fr 1fr; gap: 3px;
+  width: 236px; aspect-ratio: 1920 / 1350; padding: 3px; border-radius: 7px; background: var(--fg);
+}
+.fk {
+  display: flex; align-items: center; justify-content: center; border-radius: 4px;
+  font: 600 0.6rem/1.1 var(--sans); color: var(--c); white-space: nowrap; letter-spacing: -.01em;
+  background: color-mix(in srgb, var(--c) 16%, var(--card)); border-top: 3px solid var(--c);
+}
+.fk.front { grid-column: 1 / 5; font-size: 0.85rem; position: relative; }
+/* the planned trajectory drawn where it appears in the video: bottom center of the front view */
+.fk-plan { position: absolute; bottom: 5px; left: 50%; transform: translateX(-9px); display: flex; align-items: flex-end; gap: 5px; font: 500 0.6rem/1 var(--sans); color: #C85F28; white-space: nowrap; }   /* Argus's plan: terracotta, as in the videos */
+.fk-plan .ribbon { margin-right: -2px; }
+.fk-cap { font: 0.8rem var(--sans); color: var(--fg-soft); margin: 6px 0 14px; }
+.fk-ribbon { display: flex; align-items: center; gap: 9px; font-size: 0.88rem; color: var(--fg-soft); margin: 0; }
+.ribbon { flex: none; width: 34px; height: 24px; }   /* the plan as the videos draw it: a band on the road, narrowing and bending with distance, pale dots along it */
+
+/* ---- Player: video + description on the left, drive list on the right ---- */
+.player { display: block; }
+.stage { position: relative; border-radius: 10px; overflow: hidden; background: #000; aspect-ratio: 1920 / 1350;
+  /* capped so the title and description below stay on screen */
+  width: min(100%, calc(66vh * 1920 / 1350)); margin: 0 auto; }
+/* pass / failure badge on the video itself */
+.vstatus { position: absolute; top: 10px; right: 10px; z-index: 3; padding: 6px 12px; border-radius: 7px; font: 700 0.95rem/1 var(--sans); letter-spacing: .04em; text-transform: uppercase; color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.35); pointer-events: none; }
+.vstatus.pass { background: #2f8f57; } .vstatus.fail { background: #b8342a; }
+.stage video { width: 100%; height: 100%; display: block; object-fit: contain; }
+.vlab {
+  position: absolute; top: 80%; width: 25%; padding: 4px 7px;
+  font: 600 0.66rem/1 var(--sans); color: #fff; pointer-events: none; text-shadow: 0 1px 2px rgba(0,0,0,.7);
+  border-top: 3px solid var(--c);
+}
+.vlab.front { left: 0; right: 0; width: auto; bottom: auto; top: 0; transform: none; padding: 7px 10px; }
+.failflag {
+  position: absolute; top: 48px; right: 10px; z-index: 3; padding: 2px 9px; border-radius: 6px;
+  font: 600 0.75rem/1.6 var(--sans); color: #fff; background: #b8342a; pointer-events: none;
+}
+.ptext { padding: 0 2px 14px; }
+.phead { display: flex; align-items: first baseline; gap: 10px; flex-wrap: wrap; }   /* the tag sits on the title's first line, however the title wraps */
+.phead h3 { font-family: var(--display); font-size: 1.5rem; margin: 0; letter-spacing: .02em; }
+.pnav { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font: 0.8rem var(--sans); color: var(--fg-soft); }
+.pnav button {
+  width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--rule); background: var(--card);
+  color: var(--fg); cursor: pointer; font-size: 0.95rem; line-height: 1;
+}
+.pnav button:hover { border-color: var(--teal); color: var(--teal); }
+.ptext p { margin: 8px 0 0; max-width: 80ch; }
+#cdesc { font-size: 1.05rem; color: var(--fg); }
+.ptext .facts { font: 0.82rem var(--sans); color: var(--fg-soft); }
+.tag { font: 700 0.75rem/1 var(--sans); text-transform: uppercase; letter-spacing: .07em; padding: 4px 7px; border-radius: 5px; }
+.tag.pass { color: #1d6b3f; background: #dff1e5; }
+.tag.fail { color: #fff; background: #b8342a; }
+:root[data-theme="dark"] .tag.pass { color: #9be0b6; background: #183324; }
+/* drive cards: two rows (passes, failures) of poster cards under the player */
+.plist { margin-top: 22px; }
+.pgroup { display: flex; align-items: baseline; gap: 8px; font: 700 0.78rem var(--sans); text-transform: uppercase; letter-spacing: .1em; margin: 18px 0 10px; }
+.pgroup span { font-weight: 500; color: var(--fg-soft); }
+.pgroup.pass { color: #2f8f57; } .pgroup.fail { color: #b8342a; }
+/* one swipeable row; about six cards in view on wide screens */
+.cards { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 5 * 14px - 8px) / 6); gap: 14px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 4px; padding: 4px 4px 12px; scrollbar-width: thin; }
+.pcard { scroll-snap-align: start; display: flex; flex-direction: column; gap: 6px; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: var(--fg); font: inherit; }
+/* the thumbnail shows only the front camera: the top 74% of each frame */
+.pthumb { position: relative; display: block; border-radius: 9px; overflow: hidden; aspect-ratio: 1280 / 666; background: #000;
+  box-shadow: 0 0 0 1px var(--rule); transition: box-shadow .15s, transform .15s; }
+.pthumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.pcard:hover .pthumb { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--fg-soft), 0 6px 16px rgba(0,0,0,.18); }
+.pcard[aria-current="true"] .pthumb { box-shadow: 0 0 0 3px var(--teal), 0 6px 16px rgba(0,0,0,.18); }
+.pchip { position: absolute; top: 7px; left: 7px; padding: 3px 7px; border-radius: 5px; font: 700 0.62rem/1 var(--sans); text-transform: uppercase; letter-spacing: .05em; color: #fff; }
+.pcard.pass .pchip { background: rgba(47,143,87,.92); } .pcard.fail .pchip { background: rgba(184,52,42,.92); }
+.pbar { position: absolute; left: 0; bottom: 0; height: 4px; width: 100%; background: var(--teal); transform-origin: left; transform: scaleX(var(--p, 0)); transition: transform .25s linear; }
+.pcard:not([aria-current="true"]) .pbar { display: none; }
+.ptitle { font: 700 0.98rem/1.25 var(--display); letter-spacing: .02em; }
+.pcard[aria-current="true"] .ptitle { color: var(--teal-deep); }
+.pdesc { font: 0.82rem/1.35 var(--sans); color: var(--fg-soft); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 760px) {
+  .cards { grid-auto-columns: 62%; }
+  .vlab { display: none; }
+}
+
+/* ---- Native headline figure ---- */
+/* frame panel: title on the same line as the chart titles, image centered in the height left */
+.tz-a { align-self: stretch; display: flex; flex-direction: column; }
+.tz-a .wipe { margin: auto 0; }
+/* one row, as wide as the page column (a little past it); two rows on laptops, one column on phones */
+.tz { display: grid; grid-template-columns: var(--tzcols, 1.2fr 1.1fr 1.2fr); gap: 34px; align-items: start; width: min(calc(var(--max) + 60px), 96vw); max-width: none; margin: 10px auto 56px; padding: 0 22px; position: relative; left: 50%; transform: translateX(-50%); }
+@media (max-width: 1280px) {
+  .tz { grid-template-columns: 0.9fr 1.1fr; gap: 34px 44px; }
+  .tz-a { grid-column: 1 / -1; justify-self: center; width: 100%; max-width: 720px; }
+  .tz-a .tz-title { text-align: center; }
+}
+.tz-title { font-family: var(--display); font-weight: 700; font-size: 1.25rem; letter-spacing: .02em; margin: 0 0 10px; color: var(--fg); }
+.tz .tz-title { text-align: center; }
+.tz-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.tz-svg text { font-family: var(--sans); }
+.tz-svg .grid, .tz-svg .rowline { stroke: var(--rule); stroke-width: 1; }
+.tz-svg .gridm { stroke: var(--rule); stroke-width: .6; stroke-opacity: .55; }
+.tz-svg .axis { stroke: var(--fg-soft); stroke-opacity: .6; fill: none; }
+.tz-svg .tick { fill: var(--fg-soft); font-size: 14px; }
+.tz-svg .itick { fill: var(--fg-soft); font-size: 11.5px; }
+.tz-svg .axt { fill: var(--fg-soft); font-size: 14px; }
+.tz-svg .base { fill: var(--fg-soft); fill-opacity: .55; }
+.tz-svg .dot { fill: var(--fg-soft); fill-opacity: .35; }
+.tz-svg .best { fill: var(--fg-soft); fill-opacity: .85; }
+.tz-svg .blab { fill: var(--fg); fill-opacity: .8; font-size: 15.5px; }
+.tz-svg .bsub { fill: var(--fg-soft); font-size: 12px; font-style: italic; }
+.tz-svg .acurve { fill: none; stroke: var(--teal); stroke-width: 2; }
+.tz-svg .adot { fill: var(--teal); }
+.tz-svg .adash { stroke: var(--teal); stroke-dasharray: 3 2; }
+.tz-svg .abend { fill: none; stroke: var(--teal); }
+.tz-svg .alab { fill: var(--teal); font: 700 16.5px var(--display); letter-spacing: .04em; }
+.tz-svg .asub { fill: var(--teal); font-size: 13px; font-style: italic; }
+.tz-svg .alab .asub { font: italic 400 13px var(--sans); letter-spacing: 0; }
+.tz-svg .abig { fill: var(--teal); font-size: 16px; font-weight: 700; }
+.tz-svg .aarrow { stroke: var(--teal); stroke-width: 1.6; }
+.tz-svg .ahead { fill: var(--teal); }
+.tz-svg .star { fill: var(--teal); stroke: var(--card); stroke-width: .6; }
+.tz-svg .rlab { fill: var(--fg); font-size: 16.5px; }
+.tz-svg .rsub { fill: var(--fg-soft); font-size: 13px; }
+.tz-svg .gainbar { stroke: var(--teal); stroke-opacity: .65; stroke-width: 4; }
+.tz-svg .gain { fill: var(--teal); font-size: 13.5px; font-weight: 700; }
+.tz-svg .bname { fill: var(--fg-soft); font-size: 13px; }
+.tz-svg .aval { fill: var(--teal); font-size: 18px; font-weight: 700; }
+.tz-svg .aval.s { font-size: 13px; }
+.tz-svg .zoom { fill: none; stroke: var(--fg-soft); stroke-dasharray: 3 2; }
+.tz-svg .zline { stroke: var(--rule); fill: none; }
+.tz-svg .inset { fill: var(--card); stroke: var(--fg-soft); stroke-opacity: .6; }
+.tz-svg .magnifier circle, .tz-svg .magnifier path { fill: none; stroke: var(--fg-soft); stroke-width: 1.3; stroke-linecap: round; }
+.tz-svg .conn { stroke: var(--fg-soft); fill: none; }
+.tz-svg .legt { fill: var(--fg-soft); font-size: 15px; }
+.tz-svg .legt.a { fill: var(--teal); font-family: var(--display); font-weight: 700; }
+
+/* Left panel: one continuous left-to-right flow. A repeating mask, period = two frame widths, alternates
+   raster twin and camera frame with soft 40%-wide transitions; --o slides it right without pause. */
+@property --o { syntax: '<percentage>'; inherits: true; initial-value: 0%; }
+.wipe { position: relative; overflow: hidden; border-radius: 8px; aspect-ratio: 16 / 9; background: #000;
+  animation: twin-flow 8s linear infinite; }
+@keyframes twin-flow { from { --o: 0%; } to { --o: 200%; } }
+.w-twin, .w-cam { position: absolute; inset: 0; }
+.w-twin {
+  -webkit-mask-image: repeating-linear-gradient(90deg, transparent calc(var(--o) - 170%), #000 calc(var(--o) - 130%), #000 calc(var(--o) - 70%), transparent calc(var(--o) - 30%), transparent calc(var(--o) + 30%));
+          mask-image: repeating-linear-gradient(90deg, transparent calc(var(--o) - 170%), #000 calc(var(--o) - 130%), #000 calc(var(--o) - 70%), transparent calc(var(--o) - 30%), transparent calc(var(--o) + 30%));
+}
+.w-cam {
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 calc(var(--o) - 170%), transparent calc(var(--o) - 130%), transparent calc(var(--o) - 70%), #000 calc(var(--o) - 30%), #000 calc(var(--o) + 30%));
+          mask-image: repeating-linear-gradient(90deg, #000 calc(var(--o) - 170%), transparent calc(var(--o) - 130%), transparent calc(var(--o) - 70%), #000 calc(var(--o) - 30%), #000 calc(var(--o) + 30%));
+}
+@media (prefers-reduced-motion: reduce) { .wipe { animation: none; --o: 100%; } }
+.wipe img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.wipe .w-plans { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* the plans as solid bands, like the drive videos' plan (blue = Argus-Raster, terracotta = Argus) */
+.w-plans .pr-fill { fill: #2F5FC8; fill-opacity: .88; }
+.w-plans .pa-fill { fill: #C85F28; fill-opacity: .9; }
+.w-plans .plab { font: 700 13px var(--display); letter-spacing: .06em; text-transform: uppercase; }
+.w-plans .plab.r { fill: #5096E6; } .w-plans .plab.a { fill: #EE6B26; }
+.w-plans .plab { paint-order: stroke; stroke: rgba(10, 12, 16, .85); stroke-width: 3.2px; stroke-linejoin: round; }   /* a dark halo keeps the label clear of the lane lines behind it */
+.w-tag { position: absolute; padding: 3px 8px; border-radius: 4px; font: 0.82rem/1.4 var(--sans); color: #fff; background: rgba(20,14,10,.66); pointer-events: none; }
+.w-tag.tl { top: 8px; left: 8px; min-width: 9.5em; text-align: center; font-weight: 600; letter-spacing: .02em; }
+.w-twin .w-tag.tl { background: rgba(35,85,145,.85); }
+.w-cam .w-tag.tl { background: rgba(200,95,40,.85); }
+.w-tag.bl { bottom: 8px; left: 8px; min-width: 9.5em; text-align: center; font-weight: 600; letter-spacing: .02em; }
+.w-twin .w-tag.bl { background: rgba(35,85,145,.85); }
+.w-cam .w-tag.bl { background: rgba(200,95,40,.85); }
+@media (max-width: 760px) { .tz { grid-template-columns: 1fr; width: min(640px, 100vw); } .tz-a { max-width: none; } }
+
+/* ---- Figure motion: plays once when the figure scrolls into view (.tz-panel.anim -> .tz-panel.play) ---- */
+.tz-panel.anim .fade { opacity: 0; }
+.tz-panel.anim .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.tz-panel.anim .pop { transform: scale(0); transform-box: fill-box; transform-origin: center; }
+.tz { --k: .6; }
+.tz-panel.play .fade { opacity: 1; transition: opacity calc(.5s * var(--k)) ease calc(var(--d, 0s) * var(--k)); }
+.tz-panel.play .draw { stroke-dashoffset: 0; transition: stroke-dashoffset calc(var(--t, .7s) * var(--k)) cubic-bezier(.33,1,.68,1) calc(var(--d, 0s) * var(--k)); }
+/* riders (arrowhead, Argus+ star and score) travel with the tip of their line */
+.tz-panel.anim .ride { transform: translateX(var(--dx)); opacity: 0; }
+.tz-panel.play .ride { transform: none; opacity: 1; transition: transform calc(var(--t, .7s) * var(--k)) cubic-bezier(.33,1,.68,1) calc(var(--d, 0s) * var(--k)), opacity .01s linear calc(var(--d, 0s) * var(--k)); }
+.tz-panel.play .pop { transform: scale(1); transition: transform calc(.45s * var(--k)) cubic-bezier(.34,1.7,.5,1) calc(var(--d, 0s) * var(--k)); }
+@media (prefers-reduced-motion: reduce) {
+  .tz-panel.anim .fade, .tz-panel.anim .draw, .tz-panel.anim .pop, .tz-panel.anim .ride { opacity: 1; stroke-dashoffset: 0; transform: none; transition: none; }
+}
+
+/* header: Cinzel capitals read larger than Pictura's serif, so a smaller title and less top padding */
+header { padding-top: 48px; }
+h1.title { font-size: clamp(1.75rem, 4.4vw, 2.5rem); }
+@media (max-width: 760px) { header { padding-top: 40px; } }
+
+/* wider page: the video player, rig figure and section bands use the room; prose keeps its own caps (74ch, abstract 800px) */
+:root { --max: 1240px; }
+
+/* phones: the benchmark chart is drawn ~460 units wide and shrinks to ~340 px, so its labels go below 10 px; enlarge its text */
+@media (max-width: 760px) {
+  .tz-c .tz-svg .tick { font-size: 16px; }
+  .tz-c .tz-svg .aval { font-size: 21px; }
+  .tz-c .tz-svg .gain { font-size: 15.5px; }
+  .tz-c .tz-svg .bname { font-size: 14.5px; }
+  .tz-title { font-size: 1.12rem; }
+  /* charts run edge to edge on phones, for a little more width */
+  .tz-b .tz-svg, .tz-c .tz-svg { width: calc(100% + 24px); margin: 0 -12px; }
+}
+
+/* videos section: the camera-rig legend sits to the right of the title and intro on wide screens */
+@media (min-width: 1000px) {
+  #videos { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 40px; align-items: start; }
+  #videos > h2, #videos > .lede { grid-column: 1; }
+  #videos > .rig { grid-column: 2; grid-row: 1 / span 2; align-self: center; align-items: center; margin: 0 0 6px; flex-wrap: nowrap; }
+  #videos > .player, #videos > :not(h2):not(.lede):not(.rig) { grid-column: 1 / -1; }
+}
+
+/* timed commentary in the upper part of the front view, a little below its top edge, clear of the plan */
+.vcue { position: absolute; left: 50%; top: 13%; transform: translate(-50%, -6px); z-index: 3; max-width: 62%;
+  padding: 7px 14px; border-radius: 8px; background: rgba(20,14,10,.72); color: #fff; font: 600 1rem/1.35 var(--sans);
+  text-align: center; opacity: 0; transition: opacity .32s ease, transform .32s ease; pointer-events: none; }
+.vcue.on { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 760px) { .vcue { font-size: .74rem; padding: 4px 9px; max-width: 70%; top: 9%; } }
+
+/* previous / next on the sides of the video, centred on the front view */
+.vnav { position: absolute; top: 37%; transform: translateY(-50%); z-index: 4; width: 44px; height: 44px; border-radius: 50%;
+  border: 0; padding: 0; display: grid; place-items: center; cursor: pointer; background: rgba(20,14,10,.55); color: #fff;
+  opacity: .55; transition: opacity .2s, background .2s; }
+.vnav svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.vnav.prev { left: 12px; } .vnav.next { right: 12px; }
+.stage:hover .vnav { opacity: .9; } .vnav:hover, .vnav:focus-visible { opacity: 1; background: rgba(200,95,40,.9); }
+@media (hover: none) { .vnav { opacity: .8; } }
+@media (max-width: 760px) { .vnav { width: 34px; height: 34px; } .vnav svg { width: 18px; height: 18px; } }
+
+/* frozen on a failure frame: a thin timer bar under the front view shows the pause running out */
+.stage.held::after { content: ""; position: absolute; left: 0; top: calc(74% - 4px); height: 4px; width: 100%; background: #b8342a;
+  transform-origin: left; animation: hold 3s linear forwards; z-index: 4; }
+@keyframes hold { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+
+/* between drives: the two video layers crossfade */
+.stage .vlayer { position: absolute; inset: 0; opacity: 0; transition: opacity .45s ease; }
+.stage .vlayer.front { opacity: 1; z-index: 1; }
+.stage .vlab { z-index: 2; }
+
+/* header buttons: the Abstract <button> and the <a> links get the same box, so all four line up */
+.links { align-items: center; }
+.links .btn { box-sizing: border-box; height: 46px; line-height: 1; font-family: inherit; display: inline-flex; align-items: center; vertical-align: middle; margin: 0; }
+
+/* video section: title, description, video and card row share the video's width (the video is capped by screen height) */
+.player { width: min(100%, calc(66vh * 1920 / 1350)); margin: 0 auto; }
+.player .stage { width: 100%; }
+/* four cards in view on every screen: each card is a quarter of the video width */
+.cards { --cg: 14px; gap: var(--cg); grid-auto-columns: calc((100% - 3 * var(--cg) - 8px) / 4); }
+@media (max-width: 760px) {
+  .player { width: 100%; }
+  /* phones: smaller cards, about two and a half in view, title only */
+  .cards { --cg: 8px; }
+  .pdesc { display: none; }
+  .ptitle { font: 600 .68rem/1.25 var(--sans); letter-spacing: 0; }
+  .pchip { font-size: .55rem; padding: 2px 5px; top: 5px; left: 5px; }
+}
+
+/* drive details sit at the right end of the title row, not on a line of their own */
+.phead .facts { margin-left: auto; font: 0.82rem var(--sans); color: var(--fg-soft); white-space: nowrap; }
+@media (max-width: 760px) { .phead .facts { margin-left: 0; width: 100%; white-space: normal; } .phead h3 { flex: 1 1 0; min-width: 0; } }   /* a long title wraps beside its tag instead of dropping below it */
+
+/* one-line takeaway under the subtitle */
+.tldr { max-width: 760px; margin: -14px auto 26px; font: 1.06rem/1.55 var(--sans); color: var(--fg); }
+.tldr b { color: var(--teal-deep); }
+:root[data-theme="dark"] .tldr b { color: var(--teal); }
+/* how it works: two numbered steps, then the overview figure */
+#method { margin-bottom: 30px; }
+.steps { list-style: none; padding: 0; margin: 6px 0 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 34px; }
+.steps li { display: flex; gap: 14px; align-items: flex-start; }
+.steps .n { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font: 700 1rem var(--display); color: #fff; }
+.steps li:nth-child(1) .n { background: #235591; } .steps li:nth-child(2) .n { background: var(--teal); }
+.steps p { margin: 0; max-width: none; font: 0.98rem/1.6 var(--sans); }
+.steps b { font-family: var(--display); letter-spacing: .02em; }
+.ov { margin: 0; padding: 12px; background: #fff; border: 1px solid var(--rule); border-radius: 10px; }
+.ov img { display: block; width: 100%; height: auto; }
+@media (max-width: 760px) { .steps { grid-template-columns: 1fr; } .ov { padding: 6px; } .tldr { font-size: .98rem; } }
+
+/* native overview figure (overview_svg.py): animates in three steps like Fig. 1 */
+.ovn { --k: .6; }
+.ovsvg { display: block; width: 100%; height: auto; overflow: visible; }
+.ovsvg text { font-family: var(--sans); }
+.ovsvg .ovname { font-family: var(--display); font-weight: 700; letter-spacing: .03em; }
+.ovsvg .ovnum { font-family: var(--display); font-weight: 700; }   /* the step numbers: same face as the numbered steps above */
+.ovsvg .ovbig { font: 700 24px var(--display); letter-spacing: .05em; }
+
+
+/* overview steps: the self-play loop pulses twice; after alignment, the alignment-only parts fade back, leaving Argus */
+.tz-panel.play .ovpulse { animation: ovpulse .8s ease-in-out 2 both; animation-delay: calc(var(--dd) * var(--k)); }
+@keyframes ovpulse { 50% { filter: drop-shadow(0 0 4px rgba(35, 85, 145, .95)); } }
+.tz-panel.play .ovdim { animation: ovdim .8s ease forwards; animation-delay: calc(var(--dd) * var(--k)); }
+@keyframes ovdim { to { opacity: .28; } }
+
+/* overview explainer: narration, player bar, chapters */
+.ovsay { margin: 14px auto 0; max-width: 820px; min-height: 3.2em; text-align: center; font: 1rem/1.6 var(--sans); color: var(--fg); opacity: 0; transition: opacity .25s; }
+.ovsay.on { opacity: 1; }
+.ovsay b { font-family: var(--display); letter-spacing: .02em; }
+.ovbar { display: flex; align-items: center; gap: 12px; margin: 12px 6px 0; }
+.ovplay { flex: none; width: 36px; height: 36px; border-radius: 50%; border: 0; padding: 0; display: grid; place-items: center; cursor: pointer; background: var(--teal); color: #fff; }
+.ovplay svg { width: 18px; height: 18px; } .ovplay path { fill: currentColor; } .ovplay .i-replay { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.ovplay .i-pause, .ovplay .i-replay { display: none; }
+.ovn.playing .ovplay .i-play { display: none; } .ovn.playing .ovplay .i-pause { display: block; }
+.ovn.ended .ovplay .i-play { display: none; } .ovn.ended .ovplay .i-replay { display: block; }
+.ovtrack { position: relative; flex: 1; height: 6px; border-radius: 3px; background: var(--rule); cursor: pointer; touch-action: none; }
+.ovtrack:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+.ovfill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--teal); }
+.ovmark { position: absolute; top: -3px; width: 2px; height: 12px; background: var(--fg-soft); transform: translateX(-1px); }
+.ovchapters { position: relative; height: 22px; margin: 6px 6px 0 54px; }
+.ovchapters button { position: absolute; transform: translateX(0); border: 0; background: none; padding: 0; cursor: pointer; font: 600 .78rem var(--sans); color: var(--fg-soft); white-space: nowrap; }
+.ovchapters button.cur { color: var(--teal-deep); }
+:root[data-theme="dark"] .ovchapters button.cur { color: var(--teal); }
+
+/* explainer timeline: step 1 in the encoder blue, step 2 in Argus terracotta */
+.ovfill.s1 { background: #235591; } .ovfill.s2 { background: var(--teal); border-radius: 0 3px 3px 0; }
+.ovplay { background: #235591; transition: background .3s; } .ovn.step2 .ovplay { background: var(--teal); }
+.ovchapters button.s1 { color: color-mix(in srgb, #235591 55%, var(--fg-soft)); }
+.ovchapters button.s2 { color: color-mix(in srgb, #C85F28 55%, var(--fg-soft)); }
+.ovchapters button.s1.cur { color: #235591; } .ovchapters button.s2.cur { color: #C85F28; }
+:root[data-theme="dark"] .ovchapters button.s1.cur { color: #6EA3DD; }
+
+.ovkey { flex: none; display: inline-flex; align-items: center; gap: 4px; font: 600 .8rem var(--sans); color: var(--fg-soft); white-space: nowrap; }
+.ovkey svg { width: 15px; height: 15px; } .ovkey svg + svg, .ovkey svg:nth-of-type(2) { margin-left: 8px; }
+@media (max-width: 760px) { .ovkey { font-size: .7rem; } }
+
+/* explainer: chapters share the track's column so labels sit on their marks */
+.ovtl { flex: 1; min-width: 0; }
+.ovtl .ovchapters { margin: 6px 0 0; }
+/* at rest: the full pipeline with an invitation to watch it built */
+.ovn { position: relative; }
+/* at rest: like a video poster, the overview faded behind a play button */
+.ovstage { position: relative; container-type: inline-size; }   /* the caption scales with the drawing, so it covers the same spot at every width */
+.ovstart { display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 5; align-items: center; gap: 10px;
+  padding: 13px 24px 13px 18px; border: 0; border-radius: 999px; cursor: pointer; background: var(--teal); color: #fff;
+  font: 700 1.05rem var(--sans); box-shadow: 0 8px 24px rgba(0,0,0,.25); transition: transform .15s, background .15s; }
+.ovstart svg { width: 22px; height: 22px; fill: currentColor; }
+.ovstart:hover { transform: translate(-50%, -50%) scale(1.05); background: var(--teal-deep); }
+.ovn.intro .ovstart { display: flex; }
+.ovn .ovsvg { transition: opacity .4s, filter .4s; }
+/* the overview at rest is the full figure, readable; pointing at it (to start or watch again) blurs it behind the button */
+.ovn.intro .ovsvg.paper { opacity: 1; }
+@media (hover: hover) { .ovn.intro .ovstage:hover .ovsvg.paper { filter: blur(3px); opacity: .55; } }
+
+/* explainer narration as a callout inside the figure, next to what each beat explains */
+.ovsay { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; min-height: 0; }
+.ovcue { position: absolute; z-index: 4; max-width: 31%; transform: translate(-50%, 6px); opacity: 0; pointer-events: none;
+  padding: 8px 13px; border-radius: 10px; background: rgba(255, 252, 245, .97); border: 1px solid var(--rule);
+  box-shadow: 0 6px 18px rgba(34, 26, 21, .14); font: .9rem/1.45 var(--sans); color: #221A15; text-align: center;
+  transition: opacity .3s ease, transform .3s ease; }
+.ovcue.on { opacity: 1; transform: translate(-50%, 0); }
+.ovcue b { font-family: var(--display); letter-spacing: .02em; }
+.ovn.intro .ovcue { display: none; }
+
+
+/* at rest: the paper's overview; while the explainer runs: its own recentred drawing */
+.ovn.intro .ovsvg.anim, .ovn:not(.intro) .ovsvg.paper { display: none; }
+
+/* the fire mark flickers: the flame sways and stretches, its yellow core pulses */
+.flame { transform-box: fill-box; transform-origin: 50% 95%; animation: flick 1.1s ease-in-out infinite alternate; }
+.flame .flame-in, .ovkey svg:first-of-type path:last-child { transform-box: fill-box; transform-origin: 50% 100%; animation: flick-in .7s ease-in-out infinite alternate; }
+.ovkey svg:first-of-type { transform-origin: 50% 90%; animation: flick 1.1s ease-in-out infinite alternate; }
+@keyframes flick { 0% { transform: scale(1, 1) skewX(0deg); } 35% { transform: scale(.94, 1.07) skewX(-4deg); } 70% { transform: scale(1.04, .95) skewX(3deg); } 100% { transform: scale(.97, 1.05) skewX(-2deg); } }
+@keyframes flick-in { 0% { transform: scale(1, 1); opacity: 1; } 50% { transform: scale(.85, 1.12); opacity: .85; } 100% { transform: scale(1.06, .9); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .flame, .flame .flame-in, .ovkey svg { animation: none; } }
+
+/* ---- warm frosted glass for overlays on media (videos, explainer): modern controls over an ancient artifact ----
+   tinted with the page palette (glaze, terracotta, parchment) rather than cold white; a thin light rim and an inner highlight */
+.vnav, .vcue, .vstatus, .failflag, .ovcue, .ovstart {
+  -webkit-backdrop-filter: blur(12px) saturate(1.5); backdrop-filter: blur(12px) saturate(1.5);
+  border: 1px solid rgba(255, 245, 230, .35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 6px 18px rgba(20, 12, 6, .22);
+}
+/* over the videos: dark warm glass */
+.vnav { background: rgba(40, 26, 18, .38); color: #FFF7EC; opacity: .8; }
+.stage:hover .vnav { opacity: 1; }
+.vnav:hover, .vnav:focus-visible { background: rgba(200, 95, 40, .55); border-color: rgba(255, 220, 190, .55); }
+.vcue { background: rgba(34, 22, 15, .42); color: #FFF7EC; text-shadow: 0 1px 2px rgba(0, 0, 0, .35); }
+.vstatus { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 4px 14px rgba(20, 12, 6, .25); }
+.vstatus.pass { background: rgba(47, 143, 87, .58); }
+.vstatus.fail { background: rgba(184, 52, 42, .62); }
+.failflag { background: rgba(184, 52, 42, .62); }
+/* on the explainer: parchment glass for the callout, terracotta glass for the start button */
+.ovcue { background: rgba(255, 250, 240, .66); border-color: rgba(255, 255, 255, .7);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8), 0 8px 24px rgba(34, 26, 21, .16); }
+.ovstart { background: rgba(200, 95, 40, .78); border-color: rgba(255, 220, 190, .5);
+  box-shadow: inset 0 1px 0 rgba(255, 230, 205, .55), 0 10px 28px rgba(34, 26, 21, .28); }
+.ovstart:hover { background: rgba(142, 63, 22, .82); }
+/* no backdrop blur: more opaque tints keep the text readable */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .vnav { background: rgba(40, 26, 18, .7); } .vcue { background: rgba(34, 22, 15, .78); }
+  .vstatus.pass { background: rgba(47, 143, 87, .9); } .vstatus.fail, .failflag { background: rgba(184, 52, 42, .9); }
+  .ovcue { background: rgba(255, 250, 240, .95); } .ovstart { background: rgba(200, 95, 40, .95); }
+}
+
+/* ---- one radius scale for rounded rectangles (from style.css: --r-card 16, --r-sub 10, --r-chip 6) ----
+   panels, media and callouts: --r-sub; chips, tags and badges: --r-chip; tiles nested in a panel follow its curve */
+.stage, .wipe, .ov, .frame-key, .pthumb, .vcue, .ovcue { border-radius: var(--r-sub); }
+.tag, .pchip, .w-tag, .vstatus, .failflag { border-radius: var(--r-chip); }
+.fk { border-radius: calc(var(--r-sub) - 3px); }
+
+/* Fig. 1 frame pills in the same warm glass as the video overlays: blue on the raster twin, terracotta on the camera frame */
+.w-tag { -webkit-backdrop-filter: blur(10px) saturate(1.5); backdrop-filter: blur(10px) saturate(1.5);
+  border: 1px solid rgba(255, 245, 230, .35); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 4px 12px rgba(20, 12, 6, .22); }
+.w-twin .w-tag.tl, .w-twin .w-tag.bl { background: rgba(35, 85, 145, .55); }
+.w-cam .w-tag.tl, .w-cam .w-tag.bl { background: rgba(200, 95, 40, .58); }
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .w-twin .w-tag.tl, .w-twin .w-tag.bl { background: rgba(35, 85, 145, .88); } .w-cam .w-tag.tl, .w-cam .w-tag.bl { background: rgba(200, 95, 40, .9); }
+}
+
+/* ---- explainer on phones: only the drawing scrolls (and pans to the current beat); the player stays put ---- */
+.ovcanvas { position: relative; }
+@media (max-width: 760px) {
+  /* phones: the drawing zooms to each beat, so the narration is a caption under it (fixed height: nothing jumps) */
+  .ovcue { display: none; }
+  .ovsay { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; margin: 8px 4px 0;
+    min-height: 4.4em; font: .9rem/1.45 var(--sans); text-align: center; color: var(--fg); opacity: 1; }
+  /* the bar on phones: play + timeline on one row; the key and the zoom control on a row below */
+  .ovbar { flex-wrap: wrap; row-gap: 8px; }
+  .ovtl { flex: 1 1 calc(100% - 52px); }
+  .ovkey { margin-left: 4px; }
+  .zctl { margin-left: auto; }
+  .ovn.intro .ovsay { min-height: 0; margin: 0; }
+  .ovstart { font-size: .92rem; padding: 10px 18px 10px 14px; }
+  .ovbar { gap: 8px; } .ovchapters button { font-size: .7rem; }
+}
+/* ---- explainer in dark mode: dark card; lighter step-1 blue for the player ---- */
+:root[data-theme="dark"] .ov { background: var(--card); border-color: var(--rule); }
+:root[data-theme="dark"] .ovfill.s1, :root[data-theme="dark"] .ovplay { background: #4C7FC0; }
+:root[data-theme="dark"] .ovn.step2 .ovplay { background: var(--teal); }
+:root[data-theme="dark"] .ovchapters button.s1 { color: #8FB3DE; } :root[data-theme="dark"] .ovchapters button.s1.cur { color: #B5CEEC; }
+:root[data-theme="dark"] .ovchapters button.s2 { color: #E8A37C; } :root[data-theme="dark"] .ovchapters button.s2.cur { color: #F2B08A; }
+:root[data-theme="dark"] .ovmark { background: #A6998D; }
+:root[data-theme="dark"] .steps li:nth-child(1) .n { background: #4C7FC0; }
+
+/* ---- the overview drawings in dark mode: same layout, a dark palette (CSS overrides the SVG colour attributes) ---- */
+:root[data-theme="dark"] .ovsvg [fill="#F2F5F8"] { fill: #1B2431; }   /* step-1 panel */
+:root[data-theme="dark"] .ovsvg [fill="#FCF7F4"] { fill: #2A1F18; }   /* step-2 panel */
+:root[data-theme="dark"] .ovsvg [fill="#E7ECF3"] { fill: #22314A; } :root[data-theme="dark"] .ovsvg [fill="#F9EDE7"] { fill: #43291C; }   /* network blocks */
+:root[data-theme="dark"] .ovsvg [fill="#E5EBF2"] { fill: #1F2D42; } :root[data-theme="dark"] .ovsvg [fill="#F7E9E1"] { fill: #3B2519; }   /* Argus-Raster and Argus regions */
+:root[data-theme="dark"] .ovsvg [fill="#221A15"] { fill: #EDE3D6; } :root[data-theme="dark"] .ovsvg [fill="#8A7F77"] { fill: #B3A69A; }   /* text */
+:root[data-theme="dark"] .ovsvg [fill="#235591"], :root[data-theme="dark"] .ovsvg [fill="#446EA2"] { fill: #86ADE0; } :root[data-theme="dark"] .ovsvg [stroke="#235591"] { stroke: #6F9DD8; }   /* encoder blue, lighter */
+:root[data-theme="dark"] .ovsvg [data-pill][fill="#235591"] { fill: #3F6FB0; }   /* step-1 banner keeps white text readable */
+:root[data-theme="dark"] .ovsvg [fill="#C85F28"] { fill: #E8875A; } :root[data-theme="dark"] .ovsvg [stroke="#C85F28"] { stroke: #E07A45; } :root[data-theme="dark"] .ovsvg [data-pill][fill="#C85F28"] { fill: #C25E2B; }
+:root[data-theme="dark"] .ovsvg [stroke="#9CB2CE"] { stroke: #4C6A90; } :root[data-theme="dark"] .ovsvg [stroke="#E6B79E"] { stroke: #8F5E43; } :root[data-theme="dark"] .ovsvg [stroke="#A69A91"] { stroke: #7A6F66; }   /* fine lines */
+:root[data-theme="dark"] .ovsvg [stroke="#E6DED3"] { fill: #2A221C; stroke: #4F443B; }   /* disc behind the trained / frozen marks */
+:root[data-theme="dark"] .ovcue { background: rgba(34, 26, 21, .72); color: #F3EADF; border-color: rgba(255, 235, 215, .18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 8px 24px rgba(0, 0, 0, .35); }
+
+/* ---- the explainer's camera on narrow screens: a fixed frame, the drawing zooms and pans inside it ---- */
+.zwrap { position: relative; }
+.zctl { display: none; }
+.ovcanvas { transform-origin: 0 0; }
+@media (max-width: 760px) {
+  .ovstage { overflow: hidden; touch-action: pan-y; }
+  .zctl { display: flex; flex: none; gap: 2px; padding: 2px; border-radius: 999px;
+    background: rgba(255, 250, 240, .72); border: 1px solid var(--rule); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(34, 26, 21, .12); }
+  .zctl button { min-width: 28px; height: 26px; padding: 0 7px; border: 0; border-radius: 999px; background: none; cursor: pointer;
+    font: 700 .82rem var(--sans); color: var(--fg); }
+  .zctl button:disabled { opacity: .35; cursor: default; }
+  :root[data-theme="dark"] .zctl { background: rgba(34, 26, 21, .72); }
+}
+
+/* ---- beat dots on the explainer's progress bar: hollow ahead, filled once reached ---- */
+.ovdot { position: absolute; top: 50%; width: 10px; height: 10px; border-radius: 50%; transform: translate(-50%, -50%); box-sizing: border-box;
+  background: var(--card); border: 2px solid #235591; z-index: 1; transition: background .2s; box-shadow: 0 0 0 2px var(--card); }
+.ovdot.s2 { border-color: var(--teal); }
+/* the same colours as the progress fill, in both themes */
+.ovdot.on { background: #235591; } .ovdot.s2.on { background: var(--teal); }
+:root[data-theme="dark"] .ovdot { border-color: #4C7FC0; } :root[data-theme="dark"] .ovdot.s2 { border-color: var(--teal); }
+:root[data-theme="dark"] .ovdot.on { background: #4C7FC0; } :root[data-theme="dark"] .ovdot.s2.on { background: var(--teal); }
+
+/* liquid-glass trained/frozen badges in the explainer: darker glass in dark mode */
+:root[data-theme="dark"] .ovsvg .glass .gl-body { fill: rgba(44, 52, 66, .62); }
+:root[data-theme="dark"] .ovsvg .glass .gl-rim { stroke: rgba(255, 255, 255, .38); }
+:root[data-theme="dark"] .ovsvg .glass .gl-hi { fill-opacity: .1; }
+:root[data-theme="dark"] .ovsvg .glass .gl-edge { stroke: #000; stroke-opacity: .35; }
+.ovcue .cv, .ovsay .cv { color: #235591; font-weight: 600; } .ovcue .cc, .ovsay .cc { color: #CE5C00; font-weight: 600; } .ovcue .cp, .ovsay .cp { color: #C2185B; font-weight: 600; }   /* the agents, colored as in the drawing */
+:root[data-theme="dark"] .ovcue .cv, :root[data-theme="dark"] .ovsay .cv { color: #7FA8DC; } :root[data-theme="dark"] .ovcue .cc, :root[data-theme="dark"] .ovsay .cc { color: #F08A3C; } :root[data-theme="dark"] .ovcue .cp, :root[data-theme="dark"] .ovsay .cp { color: #EC5F92; }
+/* the explainer's caption is a pill in its step's color, like the step banners: blue in step 1, terracotta in step 2 */
+.ovn .ovcue, :root[data-theme="dark"] .ovn .ovcue { background: rgba(35, 85, 145, .9); color: #fff; border-color: rgba(220, 235, 255, .45); border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 8px 22px rgba(20, 40, 70, .25); }
+.ovn .ovcue.s2, :root[data-theme="dark"] .ovn .ovcue.s2 { background: rgba(200, 95, 40, .92); border-color: rgba(255, 225, 200, .5); box-shadow: inset 0 1px 0 rgba(255, 240, 225, .35), 0 8px 22px rgba(90, 40, 15, .25); }
+.ovn .ovcue i, .ovn .ovcue em { color: inherit; }
+.ovn .ovcue .cv { color: #CFE2FF; } .ovn .ovcue .cc { color: #FFC98F; } .ovn .ovcue .cp { color: #FFB8D2; }   /* the agents' colors, lightened for the blue pill */
+:root[data-theme="dark"] .ovn .ovcue .cv { color: #CFE2FF; } :root[data-theme="dark"] .ovn .ovcue .cc { color: #FFC98F; } :root[data-theme="dark"] .ovn .ovcue .cp { color: #FFB8D2; }
+.ovn .ovcue { font-size: clamp(11.5px, 1.16cqw, 14.4px); line-height: 1.38; padding: 6px 13px; }
+:root[data-theme="dark"] .fk-plan { color: #E8875A; }
+
+/* ---- video controls: pause, replay the drive, scrub, speed (under the video, as wide as it) ---- */
+.vbar { display: flex; align-items: center; gap: 10px; width: min(100%, calc(66vh * 1920 / 1350)); margin: 10px auto 0; }
+.vbtn { flex: none; width: 34px; height: 34px; border-radius: 50%; border: 0; padding: 0; display: grid; place-items: center; cursor: pointer; background: var(--teal); color: #fff; }
+.vbtn svg { width: 17px; height: 17px; } .vbtn path { fill: currentColor; }
+.vbtn .i-replay { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.vbtn.ghost { background: none; color: var(--fg-soft); border: 1.5px solid var(--rule); }
+.vbtn.ghost:hover { color: var(--teal-deep); border-color: var(--teal); }
+.vbtn .i-play { display: none; } .vpaused .vbtn .i-play { display: block; } .vpaused .vbtn .i-pause { display: none; }
+.vtrack { position: relative; flex: 1; height: 6px; border-radius: 3px; background: var(--rule); cursor: pointer; touch-action: none; }
+.vtrack::before { content: ""; position: absolute; inset: -9px 0; }   /* a taller hit area than the thin bar */
+.vtrack:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+.vfill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--teal); pointer-events: none; }
+.vtime { flex: none; min-width: 3.6em; text-align: right; font: 500 .8rem var(--sans); color: var(--fg-soft); font-variant-numeric: tabular-nums; }
+.vspeed { flex: none; min-width: 42px; height: 30px; border-radius: 15px; border: 1.5px solid var(--rule); background: none; cursor: pointer; font: 700 .82rem var(--sans); color: var(--fg-soft); }
+.vspeed:hover { border-color: var(--teal); color: var(--teal-deep); }
+.vspeed.slow { background: var(--teal); border-color: var(--teal); color: #fff; }
+:root[data-theme="dark"] .vbtn.ghost:hover, :root[data-theme="dark"] .vspeed:hover { color: var(--teal); }
+@media (max-width: 760px) { .vbar { gap: 8px; } .vtime { display: none; } }
+/* the start / watch-again button over the full figure: a moving liquid fill in the paper's two colours, the encoder blue and the Argus orange
+   (after the CV button of the author's homepage), ringed in parchment, with a soft local halo behind it so it stands out
+   while the figure stays readable; hovering the figure blurs it all */
+.ovn.intro .ovstart { isolation: isolate; overflow: hidden; border: 1px solid rgba(255, 255, 255, .5); color: #fff;
+  background: radial-gradient(circle at 18% 38%, rgba(255, 255, 255, .24), transparent 22%),
+              radial-gradient(circle at 80% 30%, rgba(214, 112, 52, .6), transparent 34%),
+              radial-gradient(circle at 14% 82%, rgba(35, 85, 145, .55), transparent 34%),
+              linear-gradient(135deg, #235591 0%, #4C7FC0 30%, #E3A27B 56%, #C85F28 78%, #B5501F 100%);
+  background-position: 0% 44%, 92% 8%, 48% 100%, 0% 50%; background-size: 130% 130%, 150% 150%, 160% 160%, 150% 150%;
+  box-shadow: 0 0 0 7px rgba(251, 246, 236, .85), 0 14px 30px rgba(34, 26, 21, .3),
+              inset 0 1px .5px rgba(255, 255, 255, .85), inset 0 -1px .5px rgba(255, 255, 255, .3), inset 0 1.1rem 1rem -.7rem rgba(255, 255, 255, .22);
+  text-shadow: 0 0 .7rem rgba(255, 255, 255, .45), 0 1px .15rem rgba(60, 25, 8, .35);
+  animation: ov-water 9.5s ease-in-out infinite; }
+@supports (background: linear-gradient(in oklch, red, blue)) {
+  .ovn.intro .ovstart { background-image: radial-gradient(circle at 18% 38%, rgba(255, 255, 255, .24), transparent 22%), radial-gradient(circle at 80% 30%, rgba(214, 112, 52, .6), transparent 34%),
+      radial-gradient(circle at 14% 82%, rgba(35, 85, 145, .55), transparent 34%), linear-gradient(in oklab 135deg, #235591 0%, #4C7FC0 30%, #E3A27B 56%, #C85F28 78%, #B5501F 100%); } }
+.ovn.intro .ovstart::before, .ovn.intro .ovstart::after { content: ""; position: absolute; z-index: -1; pointer-events: none; border-radius: inherit; }
+.ovn.intro .ovstart::before { inset: -65% -18%; opacity: .5; filter: blur(14px);
+  background: radial-gradient(ellipse at 24% 48%, rgba(255, 255, 255, .28), transparent 24%), radial-gradient(ellipse at 78% 46%, rgba(200, 95, 40, .34), transparent 32%),
+              radial-gradient(ellipse at 20% 70%, rgba(35, 85, 145, .32), transparent 34%);
+  animation: ov-current 12s ease-in-out infinite; }
+.ovn.intro .ovstart::after { inset: 0; opacity: .48; transform: translate3d(-18%, 0, 0) skewX(-12deg);
+  background: linear-gradient(115deg, transparent 16%, rgba(255, 255, 255, .2) 38%, transparent 58%), radial-gradient(ellipse at 40% 12%, rgba(255, 255, 255, .2), transparent 42%);
+  animation: ov-ripple 10.5s ease-in-out infinite; }
+.ovn.intro .ovstart:hover, .ovn.intro .ovstart:focus-visible { transform: translate(-50%, -50%) scale(1.05); animation-play-state: paused;
+  box-shadow: 0 0 0 7px rgba(251, 246, 236, .9), 0 17px 34px rgba(34, 26, 21, .32), 0 0 30px rgba(200, 95, 40, .35), inset 0 1px .5px rgba(255, 255, 255, .85); }
+.ovn.intro .ovstart:hover::before, .ovn.intro .ovstart:hover::after { animation-play-state: paused; }
+@keyframes ov-water { 0%, 100% { background-position: 0% 44%, 92% 8%, 48% 100%, 0% 50%; } 34% { background-position: 34% 22%, 70% 42%, 64% 82%, 58% 44%; } 68% { background-position: 82% 58%, 26% 28%, 35% 70%, 100% 62%; } }
+@keyframes ov-current { 0%, 100% { opacity: .45; transform: translate3d(-2%, 0, 0) rotate(0deg) scale(1.02); } 33% { opacity: .62; transform: translate3d(4%, -3%, 0) rotate(3deg) scale(1.08, .96); } 66% { opacity: .52; transform: translate3d(-4%, 3%, 0) rotate(-2deg) scale(.98, 1.06); } }
+@keyframes ov-ripple { 0%, 100% { opacity: .36; transform: translate3d(-18%, 0, 0) skewX(-12deg); } 45% { opacity: .54; transform: translate3d(12%, -3%, 0) skewX(-8deg); } }
+@media (prefers-reduced-motion: reduce) { .ovn.intro .ovstart, .ovn.intro .ovstart::before, .ovn.intro .ovstart::after { animation: none; } }
+.ovn.intro .ovstage::after { content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none; transition: opacity .4s;
+  background: radial-gradient(ellipse 30% 26% at 50% 50%, rgba(251, 246, 236, .92) 0, rgba(251, 246, 236, .6) 45%, rgba(251, 246, 236, 0) 100%); }
+@media (hover: hover) { .ovn.intro .ovstage:hover::after { opacity: 0; } }
+:root[data-theme="dark"] .ovn.intro .ovstart { box-shadow: 0 0 0 7px rgba(21, 17, 14, .85), 0 14px 30px rgba(0, 0, 0, .5), inset 0 1px .5px rgba(255, 255, 255, .7), inset 0 1.1rem 1rem -.7rem rgba(255, 255, 255, .18); }
+:root[data-theme="dark"] .ovn.intro .ovstage::after { background: radial-gradient(ellipse 30% 26% at 50% 50%, rgba(21, 17, 14, .9) 0, rgba(21, 17, 14, .55) 45%, rgba(21, 17, 14, 0) 100%); }
+:root[data-theme="dark"] #ovhshade stop { stop-color: #6E9BE0; } :root[data-theme="dark"] #ovhshade .hs0 { stop-opacity: .55; } :root[data-theme="dark"] #ovhshade .hs1 { stop-opacity: .3; }   /* H's blue shading, lighter on the dark box */
